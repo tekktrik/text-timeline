@@ -22,6 +22,7 @@ class TextTimeline:
         self.nodes = []
         """The list of timeline nodes"""
         self.name = name if name else os.path.basename(os.path.splitext(filename))
+        self._kwargs = kwargs
 
         self._parse_file(filename)
 
@@ -32,3 +33,6 @@ class TextTimeline:
 
     def _parse_file(self, filename: str):
         """Parses a file to create the timeline"""
+
+    def generate_timeline(self, filename: str) -> None:
+        """Generate a timeline from the data"""
