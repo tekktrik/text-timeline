@@ -11,6 +11,10 @@ repos:
     rev: v0.14.0
     hooks:
       - id: reuse
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.2.0
+    hooks:
+      - id: remove-crlf
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
