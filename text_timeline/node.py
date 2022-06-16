@@ -14,10 +14,17 @@ TODO: Update this
 from typing import Optional, Literal
 from collections.abc import Sequence
 
+
 class TimelineNode:
     """Base class for timeline nodes"""
 
-    def __init__(self, pasts: Sequence["TimelineNode"], futures: Sequence["TimelineNode"], id: Optional[str] = None, description: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        pasts: Sequence["TimelineNode"],
+        futures: Sequence["TimelineNode"],
+        id: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> None:
 
         self._pasts = list(pasts)
         self._futures = list(futures)
@@ -32,14 +39,14 @@ class TimelineNode:
         return self.id == node.id
 
     def __lt__(self, node: "TimelineNode") -> bool:
-        
+
         if not isinstance(node, TimelineNode):
             raise TypeError("Can only compare two TimelineNodes")
 
         return self._is_relative_in_time(node, "_pasts")
 
     def __gt__(self, node: "TimelineNode") -> bool:
-        
+
         if not isinstance(node, TimelineNode):
             raise TypeError("Can only compare two TimelineNodes")
 
@@ -89,7 +96,9 @@ class TimelineNode:
             self._futures.append(event)
             event.add_past(self)
 
-    def _is_relative_in_time(self, node: "TimelineNode", events_name: Literal["_pasts", "_futures"]) -> bool:
+    def _is_relative_in_time(
+        self, node: "TimelineNode", events_name: Literal["_pasts", "_futures"]
+    ) -> bool:
 
         events: list["TimelineNode"] = getattr(self, events_name)
         if node in events:

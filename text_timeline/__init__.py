@@ -12,6 +12,7 @@ Main entry for making timelines from formatted text files
 from typing import Optional
 import os
 
+
 class TextTimeline:
     """Main entry point for creating timelines from files"""
 
